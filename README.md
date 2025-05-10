@@ -9,13 +9,12 @@ You can send JSON-requests for the functionality testing. By default the server 
 ## authorization
 endpoint: 
 `/register`
+
 request:
-'
-{
+`{
     "login": "new_user",
     "pwd": "qwerty1234",
     "role": "USER"
-}
-`
+}`
 
 
