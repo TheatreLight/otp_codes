@@ -64,6 +64,8 @@ response:
 ## mock operation
 Don't forget to add received token to your headers!
 
+At this endpoint will be created the new mock operation and OTP code will be generated and also will be sent to the chosen senders.
+
 endpoint:
 `/operation/new`
 
