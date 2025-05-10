@@ -2,10 +2,7 @@ package promo.it.server;
 
 import com.sun.net.httpserver.HttpServer;
 import promo.it.dao.DaoManager;
-import promo.it.server.handlers.ConfigHandler;
-import promo.it.server.handlers.LoginHandler;
-import promo.it.server.handlers.RegisterHandler;
-import promo.it.server.handlers.UsersHandler;
+import promo.it.server.handlers.*;
 import promo.it.settings.SettingsManager;
 
 import java.net.InetSocketAddress;
@@ -18,6 +15,7 @@ public class Server {
         server.createContext("/login", new LoginHandler(dao, sm));
         server.createContext("/users", new UsersHandler(dao, sm));
         server.createContext("/config", new ConfigHandler(dao, sm));
+        server.createContext("/operations", new OperationHandler(dao, sm));
         server.setExecutor(Executors.newFixedThreadPool(10));
         server.start();
     }

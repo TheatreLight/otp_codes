@@ -10,6 +10,7 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+    maven ("https://jitpack.io" )
 }
 
 dependencies {
@@ -32,6 +33,14 @@ dependencies {
     implementation("io.jsonwebtoken:jjwt-api:0.11.5")
     runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
     runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
+
+    implementation("com.eatthepath:java-otp:0.4.0")
+
+    implementation("com.sun.mail:javax.mail:1.6.2")
+
+    implementation("org.opensmpp:opensmpp-core:3.0.0")
+
+    implementation("org.apache.httpcomponents:httpclient:4.5.13")
 
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")

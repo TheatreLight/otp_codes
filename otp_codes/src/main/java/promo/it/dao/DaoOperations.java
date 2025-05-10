@@ -4,6 +4,7 @@ import promo.it.model.BaseEntity;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class DaoOperations extends IDao {
     public DaoOperations(Connection conn) {
@@ -27,9 +28,26 @@ public class DaoOperations extends IDao {
         return false;
     }
 
-    @Override
-    public int insert(int param, String... args) throws SQLException {
-        return 0;
+    public long insert(long user_id, int type, int status) {
+        try {
+            var pstmt = conn.prepareStatement("INSERT INTO operations(user_id, operation_type, status) " +
+                    "VALUES(?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            pstmt.setLong(1, user_id);
+            pstmt.setInt(2, type);
+            pstmt.setInt(3, status);
+            int affectedRows = pstmt.executeUpdate();
+            if (affectedRows == 0) {
+                return 0;
+            }
+            var res = pstmt.getGeneratedKeys();
+            if(res.next()) {
+                return res.getLong(1);
+            }
+            return 0;
+        } catch(SQLException e) {
+            throw new RuntimeException("Can't create new operation - DB issue: "
+                    + e.getMessage() + ", STMT: " + e.getSQLState());
+        }
     }
 
     @Override

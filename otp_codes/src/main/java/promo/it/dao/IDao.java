@@ -13,7 +13,7 @@ public abstract class IDao {
 
     public abstract boolean isExist(String name) throws SQLException;
 
-    public abstract int insert(int param, String ... args) throws SQLException;
+    //public abstract int insert(int param, String ... args) throws SQLException;
 
     public abstract BaseEntity getEntityByID(int id) throws SQLException;
 

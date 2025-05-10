@@ -1,12 +1,16 @@
 package promo.it.model;
 
 public class BaseEntity {
-    protected int id;
+    protected long id;
 
-    BaseEntity(int id) {
+    BaseEntity(long id) {
         this.id = id;
     }
-    public int getId() {
+    public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

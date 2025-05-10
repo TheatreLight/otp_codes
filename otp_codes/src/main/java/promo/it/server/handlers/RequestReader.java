@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RequestReader {
     private ObjectMapper mapper;
@@ -26,6 +28,22 @@ public class RequestReader {
         if (node == null) {
             return "";
         }
+
         return node.get(key).asText();
+    }
+
+    public List<String> getArray(String key) {
+        List<String> result = new ArrayList<>();
+        if (node == null || !node.has(key)) {
+            return result;
+        }
+
+        JsonNode arrayNode = node.get(key);
+        if (arrayNode.isArray()) {
+            for (JsonNode item : arrayNode) {
+                result.add(item.asText());
+            }
+        }
+        return result;
     }
 }

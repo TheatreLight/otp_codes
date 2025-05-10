@@ -34,7 +34,6 @@ public class DaoUsers extends IDao {
         return res.getInt(1) != 0;
     }
 
-    @Override
     public int insert(/*Role*/int param, /*login, passwd*/String ... args) throws SQLException {
         var stmt = conn.prepareStatement("INSERT INTO users(login, password, role) VALUES(?, ?, ?)");
         int index = 1;

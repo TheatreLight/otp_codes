@@ -14,9 +14,9 @@ public class UsersService {
         daoManager = dm;
     }
 
-    public Map<Integer, String> getUsersList() {
+    public Map<Long, String> getUsersList() {
         var usersList = daoManager.getDaoUsers().getUsersList();
-        Map<Integer, String> result = new HashMap<>();
+        Map<Long, String> result = new HashMap<>();
         for (var u : usersList) {
             result.put(u.getId(), u.getLogin());
         }

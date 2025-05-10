@@ -24,7 +24,8 @@ public class UsersHandler extends BaseHandler {
         String authHeaders = exchange.getRequestHeaders().getFirst("Authorization");
         Map<Object, Object> result = new HashMap<>();
         try (exchange) {
-            if (!authService.authenticate(authHeaders)) {
+            var user = authService.authenticate(authHeaders);
+            if (user == null || user.getRole() != Roles.ADMIN) {
                 result.put("message", "Access denied");
                 code = 401;
                 sendResponse(exchange, new ObjectMapper().writeValueAsString(result));

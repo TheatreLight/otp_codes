@@ -1,10 +1,12 @@
 package promo.it.model;
 
+
 public class OtpConfig extends BaseEntity {
     private int codeLength;
-    private int ttlSeconds;
-    public OtpConfig(int id, int length, int seconds) {
-        super(id);
+    private long ttlSeconds;
+
+    public OtpConfig(int length, long seconds) {
+        super(1);
         codeLength = length;
         ttlSeconds = seconds;
     }
@@ -17,7 +19,7 @@ public class OtpConfig extends BaseEntity {
         codeLength = length;
     }
 
-    public int getTtlSeconds() {
+    public long getTtlSeconds() {
         return ttlSeconds;
     }
 

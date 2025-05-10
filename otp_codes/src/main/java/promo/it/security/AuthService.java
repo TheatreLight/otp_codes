@@ -95,13 +95,13 @@ public class AuthService {
         }
     }
 
-    public boolean authenticate(String authHeaders) {
+    public User authenticate(String authHeaders) {
         if (authHeaders == null) {
-            return false;
+            return null;
         }
 
         if (!authHeaders.startsWith(authHeaderPrefix)) {
-            return false;
+            return null;
         }
 
         String jwt = authHeaders.substring(authHeaderPrefix.length());
@@ -113,8 +113,7 @@ public class AuthService {
 
         var userId = Integer.parseInt(claims.getSubject());
         try {
-            User user = (User) daoManager.getDaoUsers().getEntityByID(userId);
-            return user.getRole() == Roles.ADMIN;
+            return (User) daoManager.getDaoUsers().getEntityByID(userId);
         } catch (SQLException e) {
             throw new RuntimeException("Database error: " + e.getMessage());
         }
